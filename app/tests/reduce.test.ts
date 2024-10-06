@@ -9,6 +9,7 @@ import {
   reduce,
   reject,
   split,
+  toArray,
 } from "@fxts/core";
 import { describe, expect, test } from "vitest";
 
@@ -84,7 +85,8 @@ describe("명령형 습관 지우기", () => {
       return pipe(
         query,
         split("&"),
-        map((i) => i.split("=")),
+        map(split("=")),
+        map(toArray),
         map(([key, value]) => ({ [key]: value })),
         reduce(Object.assign)
       );
